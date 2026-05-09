@@ -1,48 +1,56 @@
-# 🏦 Simulador de Caixa Eletrônico (ATM) - Linguagem C
+🏦 ATM System - Banco ADS (C + MySQL)
 
-Este projeto é um simulador de operações bancárias desenvolvido em **Linguagem C**, com foco em lógica de algoritmos financeiros e manipulação de estruturas de dados. O sistema gerencia saldos, realiza saques inteligentes considerando as cédulas disponíveis e mantém um histórico de operações (extrato).
+Este projeto é um sistema de terminal bancário desenvolvido em Linguagem C integrado ao banco de dados MySQL/MariaDB. O software gerencia autenticação de usuários, persistência de saldos em tempo real e regras complexas de saque e depósito.
 
-## 🚀 Funcionalidades
+🚀 Funcionalidades
+Autenticação de Usuário: Sistema de login via RA (Registro Acadêmico) e Senha consultados diretamente no banco de dados.
 
-- **Gestão de Saldo e Cota Mínima**: O sistema monitora o saldo total e impede saques que violem a reserva mínima de segurança do caixa.
-- **Saque Inteligente**: Algoritmo que calcula a distribuição de notas (R$ 100, 50, 20, 10, 5 e 2), evitando restos impossíveis de processar (como R$ 1 e R$ 3).
-- **Depósitos Dinâmicos**: Permite a entrada de valores, atualizando o saldo disponível e o histórico.
-- **Extrato de Sessão**: Registro em tempo real de todas as entradas e saídas realizadas durante a execução.
+Persistência de Dados: Integração com MySQL/MariaDB para garantir que o saldo e as informações não sejam perdidos ao fechar o programa.
 
-## 🛠️ Tecnologias e Ferramentas
+Saque Inteligente: Algoritmo que calcula a distribuição de notas (R$ 100, 50, 20, 10, 5 e 2), com validação de cota mínima de reserva do caixa.
 
-<table>
-  <tr>
-    <th bgcolor="#222" align="center"><font color="#58a6ff">Linguagem</font></th>
-    <th bgcolor="#222" align="center"><font color="#58a6ff">Ambiente & Ferramentas</font></th>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" width="50" height="50" alt="C" />
-      <br>C Puro
-    </td>
-    <td align="center" valign="top">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" width="50" height="50" alt="VS Code" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gcc/gcc-original.svg" width="50" height="50" alt="GCC" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" width="50" height="50" alt="Git" />
-      <br>VS Code | GCC | Git
-    </td>
-  </tr>
-</table>
+Sincronização em Tempo Real: Cada operação financeira realiza um UPDATE imediato no banco de dados, garantindo a integridade dos dados.
 
-## 🧠 Conceitos de ADS Aplicados
+Extrato de Sessão: Registro detalhado de todas as movimentações realizadas durante o acesso.
 
-Como estudante de **Análise e Desenvolvimento de Sistemas**, este projeto foi construído utilizando conceitos fundamentais:
+🛠️ Tecnologias e Ferramentas
+🧠 Conceitos de ADS Aplicados
+Como estudante de Análise e Desenvolvimento de Sistemas, apliquei neste projeto:
 
-1. **Structs Complexas**: Uso de uma estrutura centralizada (`CaixaEletronico`) para encapsular o estado do sistema (saldo, cota, histórico).
-2. **Passagem por Referência (Ponteiros)**: Implementação de funções que alteram o estado original dos dados na memória RAM via endereçamento.
-3. **Regras de Negócio**: Validações de segurança para impedir saques inválidos e garantir a integridade financeira do caixa.
-4. **Persistência em Memória**: Uso de arrays para armazenamento de logs de transações (extrato).
+Integração C/MySQL: Uso da biblioteca mysql.h para realizar operações de CRUD (Create, Read, Update).
+
+Manipulação de Memória: Uso de Ponteiros para passagem de dados entre funções e structs para encapsulamento.
+
+Internacionalização (i18n): Tratamento de setlocale para compatibilidade de caracteres especiais e separadores decimais entre C e SQL.
+
+Segurança de Fluxo: Lógica de login com autenticação cruzada e tratamento de erros de conexão com o banco.
+
+🗄️ Estrutura do Banco de Dados
+Para rodar o projeto, é necessário criar a seguinte estrutura no MySQL:
+
+SQL
+
+CREATE DATABASE teste_conexao;
+
+USE teste_conexao;
+
+CREATE TABLE contas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ra INT UNIQUE NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(20) NOT NULL,
+    saldo DECIMAL(10, 2) DEFAULT 0.00
+);
 
 
+🔧 Como Executar
+Requisito: Ter o MySQL ou MariaDB instalado e rodando.
 
-## 🔧 Como Executar
+Configuração: Adicione o MySQL Connector/C ao seu compilador (Search Directories & Linker Settings).
 
-1. Clone o repositório:
-   ```bash
-   git clone [https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git](https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git)
+DLL: Coloque a libmysql.dll na pasta raiz do executável.
+
+Clone o repositório e compile o projeto:
+
+Bash
+git clone https://github.com/Gln1990/CaixaEletronico_EmC.git
