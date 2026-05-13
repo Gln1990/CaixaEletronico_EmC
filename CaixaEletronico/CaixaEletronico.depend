@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1778360615 source:c:\users\gleys\caixaeletronico_linguagemc\caixaeletronico_emc\caixaeletronico\main.c
+1778635730 source:c:\users\gleys\caixaeletronico_linguagemc\caixaeletronico_emc\caixaeletronico\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<string.h>
 	<mysql.h>
+	<conio.h>
 
 1778356545 c:\users\gleys\downloads\mysql-connector-c-6.1.11-winx64\mysql-connector-c-6.1.11-winx64\include\mysql.h
 	<sys/types.h>

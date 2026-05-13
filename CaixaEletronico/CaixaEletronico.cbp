@@ -30,7 +30,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../../../Downloads/mysql-connector-c-6.1.11-winx64/mysql-connector-c-6.1.11-winx64/include" />
 		</Compiler>
+		<Linker>
+			<Add library="../../../../../mysql-connector-c-6.1.11-winx64/mysql-connector-c-6.1.11-winx64/lib/libmysql.lib" />
+			<Add directory="../../../../../mysql-connector-c-6.1.11-winx64/mysql-connector-c-6.1.11-winx64/lib" />
+		</Linker>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
